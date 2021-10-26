@@ -43,3 +43,39 @@ logout.addEventListener('click', (e)=> {
         console.log("Sign Out");
     });
 });
+
+
+// Posts
+const posts= document.querySelector('.posts');
+const setupPosts= (data)=> {
+    if(data.length){
+        let html= '';
+        data.forEach(doc => {
+            html+= `
+                <li class="list-group-item list-group-item-action">
+                    <h3>${doc.data().title}</h3>
+                    <p>${doc.data().description}</p>
+                </li>
+            `;
+        });
+
+        posts.innerHTML= html;
+    }
+    else{
+        posts.innerHTML= '<p class="text-center">there are not publications</p>'
+    }
+};
+
+
+// events
+auth.onAuthStateChanged(user=> {
+    if(user){
+        const postsRef= db.collection('posts');
+        postsRef.get().then((snapshot)=> {
+            setupPosts(snapshot.docs);
+        });
+    }
+    else{
+        posts.innerHTML= '';
+    }
+})
