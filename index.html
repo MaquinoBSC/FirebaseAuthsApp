@@ -19,9 +19,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signinModal">SignIn</a>
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">SignUp</a>
-                    <a class="nav-link" href="#" id="logout">LogOut</a>
+                    <a class="nav-link logged-out" href="#" data-toggle="modal" data-target="#signinModal" style="display: none;">SignIn</a>
+                    <a class="nav-link logged-out" href="#" data-toggle="modal" data-target="#signupModal" style="display: none;">SignUp</a>
+                    <a class="nav-link logged-in" href="#" id="logout" style="display: none;">LogOut</a>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                             <input type="password" id="login-password" class="form-control my-2" placeholder="Password" required>
                             <button type="submit" class="btn btn-primary mb-3">Sign In</button>
                             
-                            
+                            <button type="button" class="btn btn-info btn-block" id="facebookLogin">Login with Facebook</button>
                             <button type="button" class="btn btn-danger btn-block" id="googleLogin">Login with Google</button>
                         </div>
                     </form>

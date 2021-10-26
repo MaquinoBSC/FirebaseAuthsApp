@@ -1,3 +1,17 @@
+const loggedOutLinks= document.querySelectorAll('.logged-out');
+const loggedInLinks= document.querySelectorAll('.logged-in');
+
+const loginCheck= user => {
+    if(user){
+        loggedInLinks.forEach((link)=> link.style.display= 'block');
+        loggedOutLinks.forEach((link)=> link.style.display= 'none');
+    }
+    else{
+        loggedInLinks.forEach((link)=> link.style.display= 'none');
+        loggedOutLinks.forEach((link)=> link.style.display= 'block');
+    }
+}
+
 //signUp
 const signForm= document.querySelector('#signup-form');
 
@@ -61,6 +75,24 @@ googleButton.addEventListener('click', (e)=> {
 });
 
 
+// Facebook Login
+const facebookButton= document.querySelector('#facebookLogin');
+facebookButton.addEventListener('click', (e)=> {
+    e.preventDefault();
+
+    const provider= new firebase.auth.FacebookAuthProvider();
+    auth.signInWithPopup(provider)
+        .then((result)=> {
+            signinForm.reset();
+            $('#signinModal').modal('hide');
+            console.log(result);
+        })
+        .catch((err)=> {
+            console.log(err);
+        });
+});
+
+
 // Posts
 const posts= document.querySelector('.posts');
 const setupPosts= (data)=> {
@@ -86,6 +118,7 @@ const setupPosts= (data)=> {
 // events
 auth.onAuthStateChanged(user=> {
     if(user){
+        loginCheck(user)
         const postsRef= db.collection('posts');
         postsRef.get().then((snapshot)=> {
             setupPosts(snapshot.docs);
@@ -93,5 +126,6 @@ auth.onAuthStateChanged(user=> {
     }
     else{
         posts.innerHTML= '';
+        loginCheck(user);
     }
 })
