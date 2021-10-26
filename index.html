@@ -19,9 +19,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-link active" href="#">SignIn <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signinModal">SignIn</a>
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#signupModal">SignUp</a>
-                    <a class="nav-link" href="#">LogOut</a>
+                    <a class="nav-link" href="#" id="logout">LogOut</a>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -49,6 +49,31 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Modal SignIn-->
+    <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <input type="text" id="login-email" class="form-control my-2" placeholder="Email" required>
+                            <input type="password" id="login-password" class="form-control my-2" placeholder="Password" required>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Core de Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
