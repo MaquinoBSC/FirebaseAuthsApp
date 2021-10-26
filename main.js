@@ -44,6 +44,22 @@ logout.addEventListener('click', (e)=> {
     });
 });
 
+// Google Login
+const googleButton= document.querySelector('#googleLogin');
+googleButton.addEventListener('click', (e)=> {
+    const provider= new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+        .then((result)=> {
+            console.log("google sign in");
+            signinForm.reset();
+            $('#signinModal').modal('hide');
+            console.log(result);
+        })
+        .catch((err)=> {
+            console.log(err);
+        });
+});
+
 
 // Posts
 const posts= document.querySelector('.posts');
